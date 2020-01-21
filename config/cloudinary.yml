@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dyfid3vfu
+  api_key: '485249577125998'
+  api_secret: 0Dex4pSuMc5Vg5pldf5Te2yxuFw
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dyfid3vfu
+  api_key: '485249577125998'
+  api_secret: 0Dex4pSuMc5Vg5pldf5Te2yxuFw
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dyfid3vfu
+  api_key: '485249577125998'
+  api_secret: 0Dex4pSuMc5Vg5pldf5Te2yxuFw
+  enhance_image_tag: true
+  static_file_support: false

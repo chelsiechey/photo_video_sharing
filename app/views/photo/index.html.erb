@@ -1,0 +1,55 @@
+<h1 style="text-align: center">Jordy's Art :)</h1>
+  <div class="wrapper">
+    <form class="uploads" method="POST" action="/photo/store" enctype="multipart/form-data">
+      <%= token_tag %> 
+      <div class="form-group">
+        <label for="caption">Caption</label>
+        <input type="text" name="caption">
+      </div>
+      <div style="margin-left: 5px;">
+        <input type="file" name="file">
+      </div>
+      <div>
+        <input type="submit" value="Upload">
+      </div>
+    </form>
+    <div class="images" id="post_section">
+      <% @posts.each do |post| %>
+        <div class="post">
+          <div>
+            <% image_pattern = /\.(png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF)\Z/ %>
+            <% if post.link.match? image_pattern %>
+              <img class="post-image" src="<%= post.link %>">
+            <% else %>
+              <video controls class="post-image"> 
+                <source src="<%= post.link %>" type="video/mp4">
+                <source src="<%= post.link %>" type="video/ogg">
+                Your browser does not support the video tag.
+              </video>
+            <% end %>
+          </div>
+          <p class="post-caption"><%= post.caption %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <script>
+    var channel = pusher.subscribe('posts-channel');
+    channel.bind('new-post', function(data) {
+      let post_link = data.link;
+      let post_caption = data.caption;
+      let div = document.getElementById('post_section');
+      let new_content = document.createElement("div");
+      new_content.innerHTML = `
+      <div class="post">
+        <div>
+          <img class="post-image" src="${post_link}">
+        </div>
+        <p class="post-caption"> ${post_caption}</p>
+      </div>`;
+      div.insertBefore(new_content, div.firstChild);
+    });
+  </script>  
+
+
