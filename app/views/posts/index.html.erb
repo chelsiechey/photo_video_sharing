@@ -1,13 +1,13 @@
 <h1 style="text-align: center">Jordy's Art :)</h1>
   <div class="wrapper">
-    <form class="uploads" method="POST" action="/photo/store" enctype="multipart/form-data">
+    <form class="uploads" method="POST" action="/posts/store" enctype="multipart/form-data">
       <%= token_tag %> 
       <div class="form-group">
         <label for="caption">Caption</label>
         <input type="text" name="caption">
       </div>
       <div style="margin-left: 5px;">
-        <input type="file" name="file">
+        <input type="file" name="image">
       </div>
       <div>
         <input type="submit" value="Upload">
@@ -29,6 +29,7 @@
             <% end %>
           </div>
           <p class="post-caption"><%= post.caption %></p>
+          <%= link_to "Delete", post_path(post::id), method: :delete %> 
         </div>
       <% end %>
     </div>
