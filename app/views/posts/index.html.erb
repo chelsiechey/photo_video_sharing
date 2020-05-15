@@ -1,4 +1,4 @@
-<h1 style="text-align: center">Jordy's Art :)</h1>
+<h1 style="text-align: center">Jordy's Art Gallery</h1>
   <div class="wrapper">
     <form class="uploads" method="POST" action="/posts/store" enctype="multipart/form-data">
       <%= token_tag %> 
@@ -7,7 +7,7 @@
         <input type="text" name="caption">
       </div>
       <div style="margin-left: 5px;">
-        <input type="file" name="image">
+        <input type="file" name="image" required>
       </div>
       <div>
         <input type="submit" value="Upload">
@@ -29,7 +29,7 @@
             <% end %>
           </div>
           <p class="post-caption"><%= post.caption %></p>
-          <%= link_to "Delete", post_path(post::id), method: :delete %> 
+          <%= button_to "Delete", post_path(post::id), method: :delete %> 
         </div>
       <% end %>
     </div>
